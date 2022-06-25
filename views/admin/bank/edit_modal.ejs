@@ -1,0 +1,83 @@
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="editModal"
+  tabindex="-1"
+  aria-labelledby="editModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Update Bank</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <form
+        action="/admin/bank?_method=PUT"
+        method="POST"
+        enctype="multipart/form-data"
+      >
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="bankName" class="form-label">Bank Name</label>
+            <input
+              type="text"
+              class="form-control bankName"
+              id="bankName"
+              name="bankName"
+              placeholder="Enter Bank Name"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="accountName" class="form-label">Account Name</label>
+            <input
+              type="text"
+              class="form-control accountName"
+              id="accountName"
+              name="accountName"
+              placeholder="Enter Account Name"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="accountNumber" class="form-label">Account Number</label>
+            <input
+              type="text"
+              class="form-control accountNumber"
+              id="accountNumber"
+              name="accountNumber"
+              placeholder="Enter Account Number"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="image" class="form-label">Image</label>
+            <input
+              type="file"
+              class="form-control"
+              id="image"
+              name="image"
+              placeholder="Enter to Update Image"
+            />
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <input type="hidden" name="id" class="id" />
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="editModal"
+  tabindex="-1"
+  aria-labelledby="editModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Update Feature</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <form
+        action="/admin/item/feature?_method=PUT"
+        method="POST"
+        enctype="multipart/form-data"
+      >
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input
+              type="text"
+              class="form-control name"
+              name="name"
+              placeholder="Update Name"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="qty" class="form-label">Qty</label>
+            <input
+              type="number"
+              class="form-control qty"
+              name="qty"
+              placeholder="Update Qty"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="image" class="form-label">Image</label>
+            <input
+              type="file"
+              class="form-control image"
+              name="image"
+              placeholder="Update Image"
+            />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <input type="hidden" name="id" class="id" />
+          <input type="hidden" name="featureId" class="featureId" />
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Bookings</h6>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table
+        class="table table-bordered"
+        id="dataTable"
+        width="100%"
+        cellspacing="0"
+      >
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Invoice</th>
+            <th>Date</th>
+            <th>Title</th>
+            <th>Member Name</th>
+            <th>Bank Name</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th>No</th>
+            <th>Invoice</th>
+            <th>Date</th>
+            <th>Title</th>
+            <th>Member Name</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </tfoot>
+
+        <tbody>
+          <% booking.forEach((res, i) => { %>
+
+          <tr>
+            <td><%= i+1 %></td>
+            <td>#<%= res.invoice %></td>
+            <td>
+              <%=
+              res.bookingStartDate.toLocaleString("id-ID",{timezone:"Asia/Jakarta"});
+              %> - <%=
+              res.bookingEndDate.toLocaleString("id-ID",{timezone:"Asia/Jakarta"});
+              %>
+            </td>
+            <td><%= res.itemId.title %></td>
+            <td><%= res.memberId.firstName %> <%= res.memberId.lastName %></td>
+            <td><%= res.payments.status %></td>
+            <td>
+              <a
+                href="/admin/booking/<%= res.id %>"
+                class="btn btn-success btn-circle btn-sm button-detail"
+                ><i class="fas fa-eye"></i
+              ></a>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

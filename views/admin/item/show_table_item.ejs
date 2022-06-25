@@ -1,0 +1,90 @@
+<div
+  class="tab-pane fade show active"
+  id="show"
+  role="tabpanel"
+  aria-labelledby="show-tab"
+>
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Items</h6>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table
+          class="table table-bordered"
+          id="dataTable"
+          width="100%"
+          cellspacing="0"
+        >
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Title</th>
+              <th>Price</th>
+              <th>Country</th>
+              <th>City</th>
+              <!-- <th>Is Popular</th>
+              <th>Description</th>
+              <th>Image ID</th>
+              <th>Feature ID</th>
+              <th>Activity ID</th> -->
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th>No</th>
+              <th>Title</th>
+              <th>Price</th>
+              <th>Country</th>
+              <th>City</th>
+              <!-- <th>Is Popular</th>
+              <th>Description</th>
+              <th>Image ID</th>
+              <th>Feature ID</th>
+              <th>Activity ID</th> -->
+              <th>Action</th>
+            </tr>
+          </tfoot>
+          <tbody>
+            <% item.forEach((res, line) => { %>
+            <tr>
+              <td><%= line + 1 %></td>
+              <td><%= res.title %></td>
+              <td><%= res.price %></td>
+              <td><%= res.country %></td>
+              <td><%= res.city %></td>
+              <td>
+                <a
+                  href="/admin/item/show-image/<%= res.id %>"
+                  class="btn btn-primary btn-circle btn-sm"
+                  ><i class="fas fa-image"></i
+                ></a>
+                <a
+                  href="/admin/item/detail/<%= res.id %>"
+                  class="btn btn-success btn-circle btn-sm"
+                  ><i class="fas fa-plus"></i
+                ></a>
+                <a
+                  href="/admin/item/edit/<%= res.id %>"
+                  type="button"
+                  class="btn btn-warning btn-circle btn-sm"
+                  ><i class="fas fa-edit"></i
+                ></a>
+                <a
+                  href="javascript:void()"
+                  type="button"
+                  class="btn btn-danger btn-circle btn-sm button-delete"
+                  data-id="<%= res.id %>"
+                  ><i class="fas fa-trash"></i
+                ></a>
+              </td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

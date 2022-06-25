@@ -1,0 +1,121 @@
+<div
+  class="tab-pane fade show active"
+  id="feature"
+  role="tabpanel"
+  aria-labelledby="feature-tab"
+>
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-4">
+          <form
+            action="/admin/item/new-feature/<%= item.id %>"
+            method="post"
+            enctype="multipart/form-data"
+          >
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                class="form-control"
+                placeholder="Enter name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="qty">Quantity</label>
+              <input
+                type="number"
+                name="qty"
+                id="qty"
+                class="form-control"
+                placeholder="Enter quantity"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="image">Image</label>
+              <input
+                type="file"
+                class="form-control"
+                name="image"
+                id="image"
+                required
+              />
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+          </form>
+        </div>
+        <div class="col-md-8">
+          <div class="table-responsive">
+            <table
+              class="display table table-bordered"
+              id="dataTable"
+              width="100%"
+              cellspacing="0"
+            >
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Name</th>
+                  <th>Quantity</th>
+                  <th>Image</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tfoot>
+                <tr>
+                  <th>No</th>
+                  <th>Name</th>
+                  <th>Quantity</th>
+                  <th>Image</th>
+                  <th>Action</th>
+                </tr>
+              </tfoot>
+              <tbody>
+                <% item.featureId.forEach((res, index) => { %>
+                <tr>
+                  <td><%= index+1 %></td>
+                  <td><%= res.name %></td>
+                  <td><%= res.qty %></td>
+                  <td>
+                    <img
+                      src="<%= res.imageUrl %>"
+                      style="width: 150px; height: 150px"
+                      alt=""
+                    />
+                  </td>
+                  <td>
+                    <a
+                      href="javascript:void()"
+                      class="btn btn-warning btn-circle btn-sm edit-feature"
+                      data-featureid="<%= res.id %>"
+                      data-id="<%= item.id %>"
+                      data-name="<%= res.name %>"
+                      data-qty="<%= res.qty %>"
+                      ><i class="fas fa-edit"></i
+                    ></a>
+                    <a
+                      href="javascript:void()"
+                      class="btn btn-danger btn-circle btn-sm delete-feature"
+                      data-featureid="<%= res.id %>"
+                      data-id="<%= item.id %>"
+                      ><i class="fas fa-trash"></i
+                    ></a>
+                  </td>
+                </tr>
+                <% }) %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href="/admin/item" class="btn btn-info btn-circle btn-sm"
+    ><i class="fas fa-arrow-left"></i
+  ></a>
+</div>
