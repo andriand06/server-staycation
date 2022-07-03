@@ -33,10 +33,12 @@ const itemSchema = new Schema({
     type: Number,
     default: 0,
   },
-  categoryId: {
-    type: ObjectId,
-    ref: "Category",
-  },
+  categoryId: [
+    {
+      type: ObjectId,
+      ref: "Category",
+    },
+  ],
   imageId: [
     {
       type: ObjectId,
