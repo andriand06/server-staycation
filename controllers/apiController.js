@@ -29,12 +29,12 @@ module.exports = {
           },
           perDocumentLimit: 4,
         });
-      for (let i = 0, len = category.length; i < len; i++) {
-        for (let j = 0, len = category[i].itemId.length; j < len; j++) {
-          const item = await Item.findOne({ _id: category[i].itemId[j]._id });
+      for (let i = 0, len = categoryId.length; i < len; i++) {
+        for (let j = 0, len = categoryId[i].itemId.length; j < len; j++) {
+          const item = await Item.findOne({ _id: categoryId[i].itemId[j]._id });
           item.isPopular = false;
           await item.save();
-          if (category[i].itemId[0] === category[i].itemId[j]) {
+          if (categoryId[i].itemId[0] === categoryId[i].itemId[j]) {
             item.isPopular = true;
             await item.save();
           }
