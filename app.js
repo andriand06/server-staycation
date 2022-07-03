@@ -49,7 +49,7 @@ app.use(
     path.join(__dirname, "/public/startbootstrap-sb-admin-2-gh-pages")
   )
 );
-app.use((res, res, next) => {
+app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   next();
 });
