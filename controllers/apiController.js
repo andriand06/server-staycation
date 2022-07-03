@@ -15,7 +15,7 @@ module.exports = {
       const treasure = await Activity.find();
       const traveler = await Booking.find();
       const city = await Item.find();
-      const category = await Category.find()
+      const categoryId = await Category.find()
         .select("_id name")
         .limit(3)
         .populate({
@@ -57,7 +57,7 @@ module.exports = {
           cities: city.length,
         },
         mostPicked,
-        category,
+        categoryId,
         testimonial,
       });
     } catch (error) {}
