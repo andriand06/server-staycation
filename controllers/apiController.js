@@ -70,6 +70,17 @@ module.exports = {
         .populate({
           path: "categoryId",
           select: "name",
+          populate: {
+            path: "itemId",
+            select: "_id title country city isPopular sumBooking",
+            options: { sort: { sumBooking: -1 } },
+            populate: {
+              path: "imageId",
+              select: "_id imageUrl",
+              perDocumentLimit: 1,
+            },
+            perDocumentLimit: 4,
+          },
         })
         .populate({
           path: "featureId",
