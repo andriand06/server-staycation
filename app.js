@@ -49,6 +49,10 @@ app.use(
     path.join(__dirname, "/public/startbootstrap-sb-admin-2-gh-pages")
   )
 );
+app.use((res, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+});
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/admin", adminRouter);
