@@ -173,7 +173,7 @@ module.exports = {
         },
         memberId: member.id,
         payments: {
-          proofPayment: req.file ? `image/${req.file.filename}` : null,
+          proofPayment: req.file ? `images/${req.file.filename}` : null,
           bankFrom,
           accountHolder,
           status: "Proses",
