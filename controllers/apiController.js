@@ -113,77 +113,81 @@ module.exports = {
     } catch (error) {}
   },
   bookingPage: async (req, res) => {
-    const response = [];
-    const {
-      idItem,
-      duration,
-      price,
-      bookingStartDate,
-      bookingEndDate,
-      firstName,
-      lastName,
-      email,
-      phoneNumber,
-      accountHolder,
-      bankFrom,
-    } = req.body;
-    if (!req.file) {
-      response.push("Image not found");
-    }
-    if (
-      !idItem ||
-      !duration ||
-      !bookingStartDate ||
-      !bookingEndDate ||
-      !firstName ||
-      !lastName ||
-      !email ||
-      !phoneNumber ||
-      !accountHolder ||
-      !bankFrom
-    ) {
-      response.push("Data belum lengkap");
-    }
-    const item = await Item.findOne({ _id: idItem });
-    if (!item) {
-      response.push("Item not found");
-    }
-    item.sumBooking += 1;
-    await item.save();
-    let total = item.price * duration;
-    let tax = 0.11 * total;
-    const invoice = Math.floor(1000000 + Math.random() * 9000000);
-    const member = await Member.create({
-      firstName,
-      lastName,
-      email,
-      phoneNumber,
-    });
-    const newBooking = {
-      invoice,
-      bookingStartDate,
-      bookingEndDate,
-      total: total + tax,
-      itemId: {
-        _id: idItem,
-        title: item.title,
-        price: item.price,
+    try {
+      const response = [];
+      const {
+        idItem,
         duration,
-      },
-      memberId: member.id,
-      payments: {
-        proofPayment: req.file ? `image/${req.file.filename}` : null,
-        bankFrom,
+        price,
+        bookingStartDate,
+        bookingEndDate,
+        firstName,
+        lastName,
+        email,
+        phoneNumber,
         accountHolder,
-        status: "Proses",
-      },
-    };
-    const booking = await Booking.create(newBooking);
-    response.length > 0
-      ? res.status(404).json(response.join(","))
-      : res.status(201).json({
-          message: "Sukses Booking",
-          booking,
-        });
+        bankFrom,
+      } = req.body;
+      if (!req.file) {
+        response.push("Image not found");
+      }
+      if (
+        !idItem ||
+        !duration ||
+        !bookingStartDate ||
+        !bookingEndDate ||
+        !firstName ||
+        !lastName ||
+        !email ||
+        !phoneNumber ||
+        !accountHolder ||
+        !bankFrom
+      ) {
+        response.push("Data belum lengkap");
+      }
+      const item = await Item.findOne({ _id: idItem });
+      if (!item) {
+        response.push("Item not found");
+      }
+      item.sumBooking += 1;
+      await item.save();
+      let total = item.price * duration;
+      let tax = 0.11 * total;
+      const invoice = Math.floor(1000000 + Math.random() * 9000000);
+      const member = await Member.create({
+        firstName,
+        lastName,
+        email,
+        phoneNumber,
+      });
+      const newBooking = {
+        invoice,
+        bookingStartDate,
+        bookingEndDate,
+        total: total + tax,
+        itemId: {
+          _id: idItem,
+          title: item.title,
+          price: item.price,
+          duration,
+        },
+        memberId: member.id,
+        payments: {
+          proofPayment: req.file ? `image/${req.file.filename}` : null,
+          bankFrom,
+          accountHolder,
+          status: "Proses",
+        },
+      };
+      const booking = await Booking.create(newBooking);
+      response.length > 0
+        ? res.status(404).json(response.join(","))
+        : res.status(201).json({
+            message: "Sukses Booking",
+            booking,
+          });
+    } catch (error) {
+      res.status(404).json(error);
+    }
   },
 };
